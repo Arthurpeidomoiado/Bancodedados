@@ -84,6 +84,25 @@ function App(){
     }
     return resultado;
   }
+  function Calculardora(operacao, num1, num2){
+    switch(operacao){
+      case 'soma':
+        return num1 + num2;
+      case 'subtracao':
+        return num1 - num2;
+      case 'multiplicacao':
+        return num1 * num2;
+      case 'divisao':
+        return num1 / num2;
+      default:
+        return 0;
+    }
+  }
+  function printarCalculadora(operacao, num1, num2){
+    return `O resultado da ${operacao} entre ${num1} e ${num2} é: ${Calculardora(operacao, num1, num2)}`;
+  }
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
     return (
         <>
             <h1>Calcular IMC</h1>
@@ -130,6 +149,16 @@ function App(){
               <input type='button' value='Adicionar Aluno' onClick={() => adicionarAluno()} />
               <p>Alunos cadastrados:</p>
               <p>{PrintarAlunos(alunos)}</p>
+            </form>
+            <br></br>
+            <h1>Calculadora</h1>
+            <form>
+              <input type="number" placeholder="Digite o primeiro número" value={num1} onChange={(e) => setNum1(parseFloat(e.target.value))} />
+              <input type="number" placeholder="Digite o segundo número" value={num2} onChange={(e) => setNum2(parseFloat(e.target.value))} />
+              <input type='button' value='Soma' onClick={() => alert(printarCalculadora('soma', num1, num2))} />
+              <input type='button' value='Subtração' onClick={() => alert(printarCalculadora('subtracao', num1, num2))} />
+              <input type='button' value='Multiplicação' onClick={() => alert(printarCalculadora('multiplicacao', num1, num2))} />
+              <input type='button' value='Divisão' onClick={() => alert(printarCalculadora('divisao', num1, num2))} />
             </form>
         </>
     );
